@@ -1,1 +1,39 @@
-{     "devDependencies": {         "catbox": "*",         "electron-lite": "kaizhu256/node-electron-lite#alpha",         "utility2": "kaizhu256/node-utility2#alpha"     },     "name":"npmdoc-catbox",     "homepage": "https://github.com/npmdoc/node-npmdoc-catbox",     "repository": {         "type": "git",         "url": "https://github.com/npmdoc/node-npmdoc-catbox.git"     },     "scripts": {         "build-ci": "utility2 shReadmeTest build_ci.sh"     },     "version": "0.0.1" }
+{
+    "author": "kai zhu <kaizhu256@gmail.com>",
+    "description": "#### api documentation for  [catbox (v7.1.3)](https://github.com/hapijs/catbox#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-catbox.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-catbox) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-catbox.svg)](https://travis-ci.org/npmdoc/node-npmdoc-catbox)",
+    "devDependencies": {
+        "catbox": "*",
+        "electron-lite": "kaizhu256/node-electron-lite#alpha",
+        "utility2": "kaizhu256/node-utility2#alpha"
+    },
+    "engines": {
+        "node": ">=4.0"
+    },
+    "homepage": "https://github.com/npmdoc/node-npmdoc-catbox",
+    "keywords": [
+        "documentation",
+        "catbox"
+    ],
+    "license": "MIT",
+    "main": "lib.npmdoc_catbox.js",
+    "name": "npmdoc-catbox",
+    "nameAlias": "npmdoc_catbox",
+    "nameOriginal": "npmdoc-catbox",
+    "os": [
+        "darwin",
+        "linux"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/npmdoc/node-npmdoc-catbox.git"
+    },
+    "scripts": {
+        "build-ci": "utility2 shReadmeTest build_ci.sh",
+        "env": "env",
+        "heroku-postbuild": "npm install \"kaizhu256/node-utility2#alpha\" && utility2 shDeployHeroku",
+        "postinstall": "[ ! -f npm_scripts.sh ] || ./npm_scripts.sh postinstall",
+        "start": "PORT=${PORT:-8080} utility2 start test.js",
+        "test": "(set -e; export PORT=$(utility2 shServerPortRandom); utility2 test test.js)"
+    },
+    "version": "0.0.1"
+}
