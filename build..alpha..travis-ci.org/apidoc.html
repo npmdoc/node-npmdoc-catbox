@@ -1,0 +1,1155 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/hapijs/catbox#readme"
+
+    >catbox (v7.1.3)</a>
+</h1>
+<h4>Multi-strategy object caching service</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.catbox">module catbox</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.catbox.Client">
+            function <span class="apidocSignatureSpan">catbox.</span>Client
+            <span class="apidocSignatureSpan">(engine, options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.catbox.Policy">
+            function <span class="apidocSignatureSpan">catbox.</span>Policy
+            <span class="apidocSignatureSpan">(options, cache, segment)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.catbox.policy">
+            function <span class="apidocSignatureSpan">catbox.</span>policy
+            <span class="apidocSignatureSpan">(options, cache, segment)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">catbox.</span>Client.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">catbox.</span>policy.prototype</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.catbox.Client">module catbox.Client</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.catbox.Client.Client">
+            function <span class="apidocSignatureSpan">catbox.</span>Client
+            <span class="apidocSignatureSpan">(engine, options)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.catbox.Client.prototype">module catbox.Client.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.catbox.Client.prototype.drop">
+            function <span class="apidocSignatureSpan">catbox.Client.prototype.</span>drop
+            <span class="apidocSignatureSpan">(key, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.catbox.Client.prototype.get">
+            function <span class="apidocSignatureSpan">catbox.Client.prototype.</span>get
+            <span class="apidocSignatureSpan">(key, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.catbox.Client.prototype.isReady">
+            function <span class="apidocSignatureSpan">catbox.Client.prototype.</span>isReady
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.catbox.Client.prototype.set">
+            function <span class="apidocSignatureSpan">catbox.Client.prototype.</span>set
+            <span class="apidocSignatureSpan">(key, value, ttl, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.catbox.Client.prototype.start">
+            function <span class="apidocSignatureSpan">catbox.Client.prototype.</span>start
+            <span class="apidocSignatureSpan">(callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.catbox.Client.prototype.stop">
+            function <span class="apidocSignatureSpan">catbox.Client.prototype.</span>stop
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.catbox.Client.prototype.validateSegmentName">
+            function <span class="apidocSignatureSpan">catbox.Client.prototype.</span>validateSegmentName
+            <span class="apidocSignatureSpan">(name)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.catbox.policy">module catbox.policy</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.catbox.policy.policy">
+            function <span class="apidocSignatureSpan">catbox.</span>policy
+            <span class="apidocSignatureSpan">(options, cache, segment)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.catbox.policy.compile">
+            function <span class="apidocSignatureSpan">catbox.policy.</span>compile
+            <span class="apidocSignatureSpan">(options, serverSide)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.catbox.policy.ttl">
+            function <span class="apidocSignatureSpan">catbox.policy.</span>ttl
+            <span class="apidocSignatureSpan">(rule, created, now)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.catbox.policy.prototype">module catbox.policy.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.catbox.policy.prototype._callGenerateFunc">
+            function <span class="apidocSignatureSpan">catbox.policy.prototype.</span>_callGenerateFunc
+            <span class="apidocSignatureSpan">(id, key, cached, report, respond)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.catbox.policy.prototype._generate">
+            function <span class="apidocSignatureSpan">catbox.policy.prototype.</span>_generate
+            <span class="apidocSignatureSpan">(id, key, cached, report)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.catbox.policy.prototype._get">
+            function <span class="apidocSignatureSpan">catbox.policy.prototype.</span>_get
+            <span class="apidocSignatureSpan">(id, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.catbox.policy.prototype.drop">
+            function <span class="apidocSignatureSpan">catbox.policy.prototype.</span>drop
+            <span class="apidocSignatureSpan">(key, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.catbox.policy.prototype.get">
+            function <span class="apidocSignatureSpan">catbox.policy.prototype.</span>get
+            <span class="apidocSignatureSpan">(key, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.catbox.policy.prototype.isReady">
+            function <span class="apidocSignatureSpan">catbox.policy.prototype.</span>isReady
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.catbox.policy.prototype.rules">
+            function <span class="apidocSignatureSpan">catbox.policy.prototype.</span>rules
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.catbox.policy.prototype.set">
+            function <span class="apidocSignatureSpan">catbox.policy.prototype.</span>set
+            <span class="apidocSignatureSpan">(key, value, ttl, callback)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.catbox.policy.prototype.ttl">
+            function <span class="apidocSignatureSpan">catbox.policy.prototype.</span>ttl
+            <span class="apidocSignatureSpan">(created)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.catbox" id="apidoc.module.catbox">module catbox</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.catbox.Client" id="apidoc.element.catbox.Client">
+        function <span class="apidocSignatureSpan">catbox.</span>Client
+        <span class="apidocSignatureSpan">(engine, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">Client = function (engine, options) {
+
+    Hoek.assert(this instanceof internals.Client, &#x27;Cache client must be instantiated using new&#x27;);
+    Hoek.assert(engine, &#x27;Missing catbox client engine&#x27;);
+    Hoek.assert(typeof engine === &#x27;object&#x27; || typeof engine === &#x27;function&#x27;, &#x27;engine must be an engine object or engine prototype
+ (function)&#x27;);
+    Hoek.assert(typeof engine === &#x27;function&#x27; || !options, &#x27;Can only specify options with function engine config&#x27;);
+
+    const settings = Hoek.applyToDefaults(internals.defaults, options || {});
+    Hoek.assert(settings.partition.match(/^[\w\-]+$/), &#x27;Invalid partition name:&#x27; + settings.partition);
+
+    this.connection = (typeof engine === &#x27;object&#x27; ? engine : new engine(settings));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.catbox.Policy" id="apidoc.element.catbox.Policy">
+        function <span class="apidocSignatureSpan">catbox.</span>Policy
+        <span class="apidocSignatureSpan">(options, cache, segment)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">Policy = function (options, cache, segment) {
+
+    Hoek.assert(this instanceof internals.Policy, &#x27;Cache Policy must be instantiated using new&#x27;);
+
+    this._cache = cache;
+    this._pendings = {};                                        // id -&#x3e; [callbacks]
+    this._pendingGenerateCall = {};                             // id -&#x3e; boolean
+    this.rules(options);
+
+    this.stats = {
+        sets: 0,
+        gets: 0,
+        hits: 0,
+        stales: 0,
+        generates: 0,
+        errors: 0
+    };
+
+    if (cache) {
+        const nameErr = cache.validateSegmentName(segment);
+        Hoek.assert(nameErr === null, &#x27;Invalid segment name: &#x27; + segment + (nameErr ? &#x27; (&#x27; + nameErr.message + &#x27;)&#x27; : &#x27;&#x27;));
+
+        this._segment = segment;
+    }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.catbox.policy" id="apidoc.element.catbox.policy">
+        function <span class="apidocSignatureSpan">catbox.</span>policy
+        <span class="apidocSignatureSpan">(options, cache, segment)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">policy = function (options, cache, segment) {
+
+    Hoek.assert(this instanceof internals.Policy, &#x27;Cache Policy must be instantiated using new&#x27;);
+
+    this._cache = cache;
+    this._pendings = {};                                        // id -&#x3e; [callbacks]
+    this._pendingGenerateCall = {};                             // id -&#x3e; boolean
+    this.rules(options);
+
+    this.stats = {
+        sets: 0,
+        gets: 0,
+        hits: 0,
+        stales: 0,
+        generates: 0,
+        errors: 0
+    };
+
+    if (cache) {
+        const nameErr = cache.validateSegmentName(segment);
+        Hoek.assert(nameErr === null, &#x27;Invalid segment name: &#x27; + segment + (nameErr ? &#x27; (&#x27; + nameErr.message + &#x27;)&#x27; : &#x27;&#x27;));
+
+        this._segment = segment;
+    }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.catbox.Client" id="apidoc.module.catbox.Client">module catbox.Client</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.catbox.Client.Client" id="apidoc.element.catbox.Client.Client">
+        function <span class="apidocSignatureSpan">catbox.</span>Client
+        <span class="apidocSignatureSpan">(engine, options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">Client = function (engine, options) {
+
+    Hoek.assert(this instanceof internals.Client, &#x27;Cache client must be instantiated using new&#x27;);
+    Hoek.assert(engine, &#x27;Missing catbox client engine&#x27;);
+    Hoek.assert(typeof engine === &#x27;object&#x27; || typeof engine === &#x27;function&#x27;, &#x27;engine must be an engine object or engine prototype
+ (function)&#x27;);
+    Hoek.assert(typeof engine === &#x27;function&#x27; || !options, &#x27;Can only specify options with function engine config&#x27;);
+
+    const settings = Hoek.applyToDefaults(internals.defaults, options || {});
+    Hoek.assert(settings.partition.match(/^[\w\-]+$/), &#x27;Invalid partition name:&#x27; + settings.partition);
+
+    this.connection = (typeof engine === &#x27;object&#x27; ? engine : new engine(settings));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.catbox.Client.prototype" id="apidoc.module.catbox.Client.prototype">module catbox.Client.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.catbox.Client.prototype.drop" id="apidoc.element.catbox.Client.prototype.drop">
+        function <span class="apidocSignatureSpan">catbox.Client.prototype.</span>drop
+        <span class="apidocSignatureSpan">(key, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">drop = function (key, callback) {
+
+    if (!this.connection.isReady()) {
+        // Disconnected
+        return callback(Boom.internal(&#x27;Disconnected&#x27;));
+    }
+
+    if (!internals.validateKey(key)) {
+        return callback(Boom.internal(&#x27;Invalid key&#x27;));
+    }
+
+    this.connection.drop(key, callback);           // Always drop, regardless of caching rules
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.catbox.Client.prototype.get" id="apidoc.element.catbox.Client.prototype.get">
+        function <span class="apidocSignatureSpan">catbox.Client.prototype.</span>get
+        <span class="apidocSignatureSpan">(key, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">get = function (key, callback) {
+
+    if (!this.connection.isReady()) {
+        // Disconnected
+        return callback(Boom.internal(&#x27;Disconnected&#x27;));
+    }
+
+    if (!key) {
+        // Not found on null
+        return callback(null, null);
+    }
+
+    if (!internals.validateKey(key)) {
+        return callback(Boom.internal(&#x27;Invalid key&#x27;));
+    }
+
+    this.connection.get(key, (err, result) =&#x3e; {
+
+        if (err) {
+            // Connection error
+            return callback(err);
+        }
+
+        if (!result ||
+            result.item === undefined ||
+            result.item === null) {
+
+            // Not found
+            return callback(null, null);
+        }
+
+        const now = Date.now();
+        const expires = result.stored + result.ttl;
+        const ttl = expires - now;
+        if (ttl &#x3c;= 0) {
+            // Expired
+            return callback(null, null);
+        }
+
+        // Valid
+
+        const cached = {
+            item: result.item,
+            stored: result.stored,
+            ttl
+        };
+
+        return callback(null, cached);
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.catbox.Client.prototype.isReady" id="apidoc.element.catbox.Client.prototype.isReady">
+        function <span class="apidocSignatureSpan">catbox.Client.prototype.</span>isReady
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">isReady = function () {
+
+    return this.connection.isReady();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.catbox.Client.prototype.set" id="apidoc.element.catbox.Client.prototype.set">
+        function <span class="apidocSignatureSpan">catbox.Client.prototype.</span>set
+        <span class="apidocSignatureSpan">(key, value, ttl, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">set = function (key, value, ttl, callback) {
+
+    if (!this.connection.isReady()) {
+        // Disconnected
+        return callback(Boom.internal(&#x27;Disconnected&#x27;));
+    }
+
+    if (!internals.validateKey(key)) {
+        return callback(Boom.internal(&#x27;Invalid key&#x27;));
+    }
+
+    if (ttl &#x3c;= 0) {
+        // Not cachable (or bad rules)
+        return callback();
+    }
+
+    this.connection.set(key, value, ttl, callback);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.catbox.Client.prototype.start" id="apidoc.element.catbox.Client.prototype.start">
+        function <span class="apidocSignatureSpan">catbox.Client.prototype.</span>start
+        <span class="apidocSignatureSpan">(callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">start = function (callback) {
+
+    this.connection.start(callback);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.catbox.Client.prototype.stop" id="apidoc.element.catbox.Client.prototype.stop">
+        function <span class="apidocSignatureSpan">catbox.Client.prototype.</span>stop
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">stop = function () {
+
+    this.connection.stop();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.catbox.Client.prototype.validateSegmentName" id="apidoc.element.catbox.Client.prototype.validateSegmentName">
+        function <span class="apidocSignatureSpan">catbox.Client.prototype.</span>validateSegmentName
+        <span class="apidocSignatureSpan">(name)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">validateSegmentName = function (name) {
+
+    return this.connection.validateSegmentName(name);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.catbox.policy" id="apidoc.module.catbox.policy">module catbox.policy</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.catbox.policy.policy" id="apidoc.element.catbox.policy.policy">
+        function <span class="apidocSignatureSpan">catbox.</span>policy
+        <span class="apidocSignatureSpan">(options, cache, segment)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">policy = function (options, cache, segment) {
+
+    Hoek.assert(this instanceof internals.Policy, &#x27;Cache Policy must be instantiated using new&#x27;);
+
+    this._cache = cache;
+    this._pendings = {};                                        // id -&#x3e; [callbacks]
+    this._pendingGenerateCall = {};                             // id -&#x3e; boolean
+    this.rules(options);
+
+    this.stats = {
+        sets: 0,
+        gets: 0,
+        hits: 0,
+        stales: 0,
+        generates: 0,
+        errors: 0
+    };
+
+    if (cache) {
+        const nameErr = cache.validateSegmentName(segment);
+        Hoek.assert(nameErr === null, &#x27;Invalid segment name: &#x27; + segment + (nameErr ? &#x27; (&#x27; + nameErr.message + &#x27;)&#x27; : &#x27;&#x27;));
+
+        this._segment = segment;
+    }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.catbox.policy.compile" id="apidoc.element.catbox.policy.compile">
+        function <span class="apidocSignatureSpan">catbox.policy.</span>compile
+        <span class="apidocSignatureSpan">(options, serverSide)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">compile = function (options, serverSide) {
+
+<span class="apidocCodeCommentSpan">    /*
+        {
+            expiresIn: 30000,
+            expiresAt: &#x27;13:00&#x27;,
+
+            generateFunc: function (id, next) { next(err, result, ttl); }
+            generateTimeout: 500,
+            generateOnReadError: true,
+            generateIgnoreWriteError: true,
+            staleIn: 20000,
+            staleTimeout: 500,
+            dropOnError: true
+        }
+     */
+</span>
+    const rule = {};
+
+    if (!options ||
+        !Object.keys(options).length) {
+
+        return rule;
+    }
+
+    // Validate rule
+
+    Joi.assert(options, internals.schema, &#x27;Invalid cache policy configuration&#x27;);
+
+    const hasExpiresIn = options.expiresIn !== undefined &#x26;&#x26; options.expiresIn !== null;
+    const hasExpiresAt = options.expiresAt !== undefined &#x26;&#x26; options.expiresAt !== null;
+
+    Hoek.assert(!hasExpiresAt || typeof options.expiresAt === &#x27;string&#x27;, &#x27;expiresAt must be a string&#x27;, options);
+    Hoek.assert(!hasExpiresIn || Hoek.isInteger(options.expiresIn), &#x27;expiresIn must be an integer&#x27;, options);
+    Hoek.assert(!hasExpiresIn || !options.staleIn || typeof options.staleIn === &#x27;function&#x27; || options.staleIn &#x3c; options.expiresIn
+, &#x27;staleIn must be less than expiresIn&#x27;);
+    Hoek.assert(!options.staleIn || serverSide, &#x27;Cannot use stale options without server-side caching&#x27;);
+    Hoek.assert(!options.staleTimeout || !hasExpiresIn || options.staleTimeout &#x3c; options.expiresIn, &#x27;staleTimeout must be less than
+ expiresIn&#x27;);
+    Hoek.assert(!options.staleTimeout || !hasExpiresIn || typeof options.staleIn === &#x27;function&#x27; || options.staleTimeout &#x3c; (options
+.expiresIn - options.staleIn), &#x27;staleTimeout must be less than the delta between expiresIn and staleIn&#x27;);
+    Hoek.assert(!options.staleTimeout || !options.pendingGenerateTimeout || options.staleTimeout &#x3c; options.pendingGenerateTimeout
+, &#x27;pendingGenerateTimeout must be greater than staleTimeout if specified&#x27;);
+
+    // Expiration
+
+    if (hasExpiresAt) {
+
+        // expiresAt
+
+        const time = /^(\d\d?):(\d\d)$/.exec(options.expiresAt);
+        rule.expiresAt = {
+            hours: parseInt(time[1], 10),
+            minutes: parseInt(time[2], 10)
+        };
+    }
+    else {
+
+        // expiresIn
+
+        rule.expiresIn = options.expiresIn || 0;
+    }
+
+    // generateTimeout
+
+    if (options.generateFunc) {
+        rule.generateFunc = options.generateFunc;
+        rule.generateTimeout = options.generateTimeout;
+
+        // Stale
+
+        if (options.staleIn) {
+            rule.staleIn = options.staleIn;
+            rule.staleTimeout = options.staleTimeout;
+        }
+
+        rule.dropOnError = options.dropOnError !== undefined ? options.dropOnError : true;                                          //
+Defaults to true
+        rule.pendingGenerateTimeout = options.pendingGenerateTimeout !== undefined ? options.pendingGenerateTimeout : 0;            //
+Defaults to zero
+    }
+
+    rule.generateOnReadError = options.generateOnReadError !== undefined ? options.generateOnReadError : true;                      //
+Defaults to true
+    rule.generateIgnoreWriteError = options.generateIgnoreWriteError !== undefined ? options.generateIgnoreWriteError : true;       //
+Defaults to true
+
+    return rule;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.catbox.policy.ttl" id="apidoc.element.catbox.policy.ttl">
+        function <span class="apidocSignatureSpan">catbox.policy.</span>ttl
+        <span class="apidocSignatureSpan">(rule, created, now)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">ttl = function (rule, created, now) {
+
+    now = now || Date.now();
+    created = created || now;
+    const age = now - created;
+
+    if (age &#x3c; 0) {
+        return 0;                                                                   // Created in the future, assume expired/bad
+    }
+
+    if (rule.expiresIn) {
+        return Math.max(rule.expiresIn - age, 0);
+    }
+
+    if (rule.expiresAt) {
+        if (age &#x3e; internals.day) {                                                  // If the item was created more than a 24 hours
+ ago
+            return 0;
+        }
+
+        const expiresAt = new Date(created);                                        // Compare expiration time on the same day
+        expiresAt.setHours(rule.expiresAt.hours);
+        expiresAt.setMinutes(rule.expiresAt.minutes);
+        expiresAt.setSeconds(0);
+        expiresAt.setMilliseconds(0);
+        let expires = expiresAt.getTime();
+
+        if (expires &#x3c;= created) {
+            expires = expires + internals.day;                                     // Move to tomorrow
+        }
+
+        if (now &#x3e;= expires) {                                                      // Expired
+            return 0;
+        }
+
+        return expires - now;
+    }
+
+    return 0;                                                                       // No rule
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.catbox.policy.prototype" id="apidoc.module.catbox.policy.prototype">module catbox.policy.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.catbox.policy.prototype._callGenerateFunc" id="apidoc.element.catbox.policy.prototype._callGenerateFunc">
+        function <span class="apidocSignatureSpan">catbox.policy.prototype.</span>_callGenerateFunc
+        <span class="apidocSignatureSpan">(id, key, cached, report, respond)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_callGenerateFunc = function (id, key, cached, report, respond) {
+
+    this.rule.generateFunc.call(null, key, (generateError, value, ttl) =&#x3e; {
+
+        delete this._pendingGenerateCall[&#x27;+&#x27; + id];
+
+        const finalize = (err) =&#x3e; {
+
+            const error = generateError || (this.rule.generateIgnoreWriteError ? null : err);
+            if (cached &#x26;&#x26;
+                error &#x26;&#x26;
+                !this.rule.dropOnError) {
+
+                return respond(this, id, error, cached.item, cached, report);
+            }
+
+            return respond(this, id, error, value, null, report);       // Ignored if stale value already returned
+        };
+
+        // Error (if dropOnError is not set to false) or not cached
+
+        if ((generateError &#x26;&#x26; this.rule.dropOnError) || ttl === 0) {                                    // null or undefined means
+ use policy
+            return this.drop(id, finalize);                 // Invalidate cache
+        }
+
+        if (!generateError) {
+            return this.set(id, value, ttl, finalize);      // Lazy save (replaces stale cache copy with late-coming fresh copy)
+        }
+
+        return finalize();
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.catbox.policy.prototype._generate" id="apidoc.element.catbox.policy.prototype._generate">
+        function <span class="apidocSignatureSpan">catbox.policy.prototype.</span>_generate
+        <span class="apidocSignatureSpan">(id, key, cached, report)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_generate = function (id, key, cached, report) {
+
+    const respond = Hoek.once(internals.respond);
+
+    if (cached) {                                       // Must be stale
+
+        // Set stale timeout
+
+        cached.ttl = cached.ttl - this.rule.staleTimeout;       // Adjust TTL for when the timeout is invoked (staleTimeout must
+ be valid if isStale is true)
+        if (cached.ttl &#x3e; 0) {
+            setTimeout(() =&#x3e; {
+
+                return respond(this, id, null, cached.item, cached, report);
+            }, this.rule.staleTimeout);
+        }
+    }
+    else if (this.rule.generateTimeout) {
+
+        // Set item generation timeout (when not in cache)
+
+        setTimeout(() =&#x3e; {
+
+            return respond(this, id, Boom.serverUnavailable(), null, null, report);
+        }, this.rule.generateTimeout);
+    }
+
+    // Generate new value
+
+    const pendingId = (&#x27;+&#x27; + id);
+    if (!this._pendingGenerateCall[pendingId]) {                // Check if a generate call is already in progress
+        ++this.stats.generates;                                 // Record generation before call in case it times out
+
+        if (this.rule.pendingGenerateTimeout) {
+            this._pendingGenerateCall[pendingId] = true;
+            setTimeout(() =&#x3e; {
+
+                delete this._pendingGenerateCall[pendingId];
+            }, this.rule.pendingGenerateTimeout);
+        }
+
+        try {
+            this._callGenerateFunc(id, key, cached, report, respond);
+        }
+        catch (err) {
+            delete this._pendingGenerateCall[pendingId];
+            return respond(this, id, err, null, null, report);
+        }
+    }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.catbox.policy.prototype._get" id="apidoc.element.catbox.policy.prototype._get">
+        function <span class="apidocSignatureSpan">catbox.policy.prototype.</span>_get
+        <span class="apidocSignatureSpan">(id, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">_get = function (id, callback) {
+
+    if (!this._cache) {
+        return Hoek.nextTick(callback)(null, null);
+    }
+
+    this._cache.get({ segment: this._segment, id }, callback);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.catbox.policy.prototype.drop" id="apidoc.element.catbox.policy.prototype.drop">
+        function <span class="apidocSignatureSpan">catbox.policy.prototype.</span>drop
+        <span class="apidocSignatureSpan">(key, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">drop = function (key, callback) {
+
+    callback = callback || Hoek.ignore;
+
+    if (!this._cache) {
+        return callback(null);
+    }
+
+    const id = (key &#x26;&#x26; typeof key === &#x27;object&#x27;) ? key.id : key;
+    if (!id) {
+        return callback(new Error(&#x27;Invalid key&#x27;));
+    }
+
+    this._cache.drop({ segment: this._segment, id }, (err) =&#x3e; {
+
+        if (err) {
+            ++this.stats.errors;
+        }
+
+        return callback(err);
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.catbox.policy.prototype.get" id="apidoc.element.catbox.policy.prototype.get">
+        function <span class="apidocSignatureSpan">catbox.policy.prototype.</span>get
+        <span class="apidocSignatureSpan">(key, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">get = function (key, callback) {     // key: string or { id: &#x27;id&#x27; }
+
+    ++this.stats.gets;
+
+    // Check if request is already pending
+
+    const id = (key &#x26;&#x26; typeof key === &#x27;object&#x27;) ? key.id : key;
+    const pendingsId = &#x27;+&#x27; + id;                                  // Prefix to avoid conflicts with JS internals (e.g. __proto__
+)
+    if (this._pendings[pendingsId]) {
+        this._pendings[pendingsId].push(process.domain ? process.domain.bind(callback) : callback);     // Explicitly bind callback
+ to its process.domain (_finalize might get called from a different active process.domain)
+        return;
+    }
+
+    this._pendings[pendingsId] = [callback];
+
+    // Lookup in cache
+
+    const timer = new Hoek.Timer();
+    this._get(id, (err, cached) =&#x3e; {
+
+        if (err) {
+            ++this.stats.errors;
+        }
+
+        // Prepare report
+
+        const report = {
+            msec: timer.elapsed(),
+            error: err
+        };
+
+        if (cached) {
+            report.stored = cached.stored;
+            report.ttl = cached.ttl;
+            const staleIn = typeof this.rule.staleIn === &#x27;function&#x27; ? this.rule.staleIn(cached.stored, cached.ttl) : this.rule.staleIn
+;
+            cached.isStale = (staleIn ? (Date.now() - cached.stored) &#x3e;= staleIn : false);
+            report.isStale = cached.isStale;
+
+            if (cached.isStale) {
+                ++this.stats.stales;
+            }
+        }
+
+        // No generate method
+
+        if (!this.rule.generateFunc ||
+            (err &#x26;&#x26; !this.rule.generateOnReadError)) {
+
+            return internals.respond(this, id, err, cached ? cached.item : null, cached, report);
+        }
+
+        // Check if found and fresh
+
+        if (cached &#x26;&#x26;
+            !cached.isStale) {
+
+            return internals.respond(this, id, null, cached.item, cached, report);
+        }
+
+        return this._generate(id, key, cached, report);
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.catbox.policy.prototype.isReady" id="apidoc.element.catbox.policy.prototype.isReady">
+        function <span class="apidocSignatureSpan">catbox.policy.prototype.</span>isReady
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">isReady = function () {
+
+    if (!this._cache) {
+        return false;
+    }
+
+    return this._cache.connection.isReady();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.catbox.policy.prototype.rules" id="apidoc.element.catbox.policy.prototype.rules">
+        function <span class="apidocSignatureSpan">catbox.policy.prototype.</span>rules
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">rules = function (options) {
+
+    this.rule = internals.Policy.compile(options, !!this._cache);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.catbox.policy.prototype.set" id="apidoc.element.catbox.policy.prototype.set">
+        function <span class="apidocSignatureSpan">catbox.policy.prototype.</span>set
+        <span class="apidocSignatureSpan">(key, value, ttl, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">set = function (key, value, ttl, callback) {
+
+    callback = callback || Hoek.ignore;
+
+    ++this.stats.sets;
+
+    if (!this._cache) {
+        return callback(null);
+    }
+
+    ttl = ttl || internals.Policy.ttl(this.rule);
+    const id = (key &#x26;&#x26; typeof key === &#x27;object&#x27;) ? key.id : key;
+    this._cache.set({ segment: this._segment, id }, value, ttl, (err) =&#x3e; {
+
+        if (err) {
+            ++this.stats.errors;
+        }
+
+        return callback(err);
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.catbox.policy.prototype.ttl" id="apidoc.element.catbox.policy.prototype.ttl">
+        function <span class="apidocSignatureSpan">catbox.policy.prototype.</span>ttl
+        <span class="apidocSignatureSpan">(created)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">ttl = function (created) {
+
+    return internals.Policy.ttl(this.rule, created);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
