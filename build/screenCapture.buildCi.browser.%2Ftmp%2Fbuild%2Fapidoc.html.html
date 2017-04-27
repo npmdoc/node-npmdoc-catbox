@@ -455,7 +455,25 @@
 
     this.connection.drop(key, callback);           // Always drop, regardless of caching rules
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+        return callback(Boom.internal('Disconnected'));
+    }
+
+    if (!internals.validateKey(key)) {
+        return callback(Boom.internal('Invalid key'));
+    }
+
+    this.connection.<span class="apidocCodeKeywordSpan">drop</span>(key, callback);           // Always drop, regardless of caching
+ rules
+};
+
+
+internals.validateKey = function (key) {
+
+    return (key &amp;&amp; typeof key.id === 'string' &amp;&amp; key.segment &amp;&amp; typeof key.segment === &amp;#
+x27;string');
+};
+...</pre></li>
     </ul>
 
 
@@ -517,7 +535,23 @@
         return callback(null, cached);
     });
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+return callback(null, null);
+    }
+
+    if (!internals.validateKey(key)) {
+return callback(Boom.internal('Invalid key'));
+    }
+
+    this.connection.<span class="apidocCodeKeywordSpan">get</span>(key, (err, result) =&gt; {
+
+if (err) {
+    // Connection error
+    return callback(err);
+}
+
+if (!result ||
+...</pre></li>
     </ul>
 
 
@@ -533,7 +567,23 @@
 
     return this.connection.isReady();
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+    this.connection.start(callback);
+};
+
+
+internals.Client.prototype.isReady = function () {
+
+    return this.connection.<span class="apidocCodeKeywordSpan">isReady</span>();
+};
+
+
+internals.Client.prototype.validateSegmentName = function (name) {
+
+    return this.connection.validateSegmentName(name);
+};
+...</pre></li>
     </ul>
 
 
@@ -563,7 +613,23 @@
 
     this.connection.set(key, value, ttl, callback);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+}
+
+if (ttl &lt;= 0) {
+    // Not cachable (or bad rules)
+    return callback();
+}
+
+this.connection.<span class="apidocCodeKeywordSpan">set</span>(key, value, ttl, callback);
+};
+
+
+internals.Client.prototype.drop = function (key, callback) {
+
+if (!this.connection.isReady()) {
+    // Disconnected
+...</pre></li>
     </ul>
 
 
@@ -579,7 +645,23 @@
 
     this.connection.start(callback);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+    this.connection.stop();
+};
+
+
+internals.Client.prototype.start = function (callback) {
+
+    this.connection.<span class="apidocCodeKeywordSpan">start</span>(callback);
+};
+
+
+internals.Client.prototype.isReady = function () {
+
+    return this.connection.isReady();
+};
+...</pre></li>
     </ul>
 
 
@@ -595,7 +677,23 @@
 
     this.connection.stop();
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+    this.connection = (typeof engine === 'object' ? engine : new engine(settings));
+};
+
+
+internals.Client.prototype.stop = function () {
+
+    this.connection.<span class="apidocCodeKeywordSpan">stop</span>();
+};
+
+
+internals.Client.prototype.start = function (callback) {
+
+    this.connection.start(callback);
+};
+...</pre></li>
     </ul>
 
 
@@ -611,7 +709,23 @@
 
     return this.connection.validateSegmentName(name);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+return this.connection.isReady();
+};
+
+
+internals.Client.prototype.validateSegmentName = function (name) {
+
+return this.connection.<span class="apidocCodeKeywordSpan">validateSegmentName</span>(name);
+};
+
+
+internals.Client.prototype.get = function (key, callback) {
+
+if (!this.connection.isReady()) {
+    // Disconnected
+...</pre></li>
     </ul>
 
 
@@ -754,7 +868,22 @@ Defaults to true
 
     return rule;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    this._segment = segment;
+}
+};
+
+
+internals.Policy.prototype.rules = function (options) {
+
+this.rule = internals.Policy.<span class="apidocCodeKeywordSpan">compile</span>(options, !!this._cache);
+};
+
+
+internals.Policy.prototype.get = function (key, callback) {     // key: string or { id: 'id' }
+
+++this.stats.gets;
+...</pre></li>
     </ul>
 
 
@@ -806,7 +935,22 @@ Defaults to true
 
     return 0;                                                                       // No rule
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+    ++this.stats.sets;
+
+    if (!this._cache) {
+return callback(null);
+    }
+
+    ttl = ttl || internals.Policy.<span class="apidocCodeKeywordSpan">ttl</span>(this.rule);
+    const id = (key &amp;&amp; typeof key === 'object') ? key.id : key;
+    this._cache.set({ segment: this._segment, id }, value, ttl, (err) =&gt; {
+
+if (err) {
+    ++this.stats.errors;
+}
+...</pre></li>
     </ul>
 
 
@@ -856,7 +1000,23 @@ Defaults to true
         return finalize();
     });
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+            setTimeout(() =&gt; {
+
+                delete this._pendingGenerateCall[pendingId];
+            }, this.rule.pendingGenerateTimeout);
+        }
+
+        try {
+            this.<span class="apidocCodeKeywordSpan">_callGenerateFunc</span>(id, key, cached, report, respond);
+        }
+        catch (err) {
+            delete this._pendingGenerateCall[pendingId];
+            return respond(this, id, err, null, null, report);
+        }
+    }
+};
+...</pre></li>
     </ul>
 
 
@@ -918,7 +1078,23 @@ Defaults to true
         }
     }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+    if (cached &amp;&amp;
+        !cached.isStale) {
+
+        return internals.respond(this, id, null, cached.item, cached, report);
+    }
+
+    return this.<span class="apidocCodeKeywordSpan">_generate</span>(id, key, cached, report);
+});
+};
+
+
+internals.Policy.prototype._generate = function (id, key, cached, report) {
+
+const respond = Hoek.once(internals.respond);
+...</pre></li>
     </ul>
 
 
@@ -938,7 +1114,22 @@ Defaults to true
 
     this._cache.get({ segment: this._segment, id }, callback);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    }
+
+    this._pendings[pendingsId] = [callback];
+
+    // Lookup in cache
+
+    const timer = new Hoek.Timer();
+    this.<span class="apidocCodeKeywordSpan">_get</span>(id, (err, cached) =&gt; {
+
+if (err) {
+    ++this.stats.errors;
+}
+
+// Prepare report
+...</pre></li>
     </ul>
 
 
@@ -972,7 +1163,25 @@ Defaults to true
         return callback(err);
     });
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+        return callback(Boom.internal('Disconnected'));
+    }
+
+    if (!internals.validateKey(key)) {
+        return callback(Boom.internal('Invalid key'));
+    }
+
+    this.connection.<span class="apidocCodeKeywordSpan">drop</span>(key, callback);           // Always drop, regardless of caching
+ rules
+};
+
+
+internals.validateKey = function (key) {
+
+    return (key &amp;&amp; typeof key.id === 'string' &amp;&amp; key.segment &amp;&amp; typeof key.segment === &amp;#
+x27;string');
+};
+...</pre></li>
     </ul>
 
 
@@ -1049,7 +1258,23 @@ Defaults to true
         return this._generate(id, key, cached, report);
     });
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+return callback(null, null);
+    }
+
+    if (!internals.validateKey(key)) {
+return callback(Boom.internal('Invalid key'));
+    }
+
+    this.connection.<span class="apidocCodeKeywordSpan">get</span>(key, (err, result) =&gt; {
+
+if (err) {
+    // Connection error
+    return callback(err);
+}
+
+if (!result ||
+...</pre></li>
     </ul>
 
 
@@ -1069,7 +1294,23 @@ Defaults to true
 
     return this._cache.connection.isReady();
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+    this.connection.start(callback);
+};
+
+
+internals.Client.prototype.isReady = function () {
+
+    return this.connection.<span class="apidocCodeKeywordSpan">isReady</span>();
+};
+
+
+internals.Client.prototype.validateSegmentName = function (name) {
+
+    return this.connection.validateSegmentName(name);
+};
+...</pre></li>
     </ul>
 
 
@@ -1085,7 +1326,23 @@ Defaults to true
 
     this.rule = internals.Policy.compile(options, !!this._cache);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+exports = module.exports = internals.Policy = function (options, cache, segment) {
+
+Hoek.assert(this instanceof internals.Policy, 'Cache Policy must be instantiated using new');
+
+this._cache = cache;
+this._pendings = {};                                        // id -&gt; [callbacks]
+this._pendingGenerateCall = {};                             // id -&gt; boolean
+this.<span class="apidocCodeKeywordSpan">rules</span>(options);
+
+this.stats = {
+    sets: 0,
+    gets: 0,
+    hits: 0,
+    stales: 0,
+    generates: 0,
+...</pre></li>
     </ul>
 
 
@@ -1118,7 +1375,23 @@ Defaults to true
         return callback(err);
     });
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+}
+
+if (ttl &lt;= 0) {
+    // Not cachable (or bad rules)
+    return callback();
+}
+
+this.connection.<span class="apidocCodeKeywordSpan">set</span>(key, value, ttl, callback);
+};
+
+
+internals.Client.prototype.drop = function (key, callback) {
+
+if (!this.connection.isReady()) {
+    // Disconnected
+...</pre></li>
     </ul>
 
 
@@ -1134,7 +1407,22 @@ Defaults to true
 
     return internals.Policy.ttl(this.rule, created);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+    ++this.stats.sets;
+
+    if (!this._cache) {
+return callback(null);
+    }
+
+    ttl = ttl || internals.Policy.<span class="apidocCodeKeywordSpan">ttl</span>(this.rule);
+    const id = (key &amp;&amp; typeof key === 'object') ? key.id : key;
+    this._cache.set({ segment: this._segment, id }, value, ttl, (err) =&gt; {
+
+if (err) {
+    ++this.stats.errors;
+}
+...</pre></li>
     </ul>
 
 
