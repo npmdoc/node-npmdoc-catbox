@@ -1,6 +1,6 @@
 # npmdoc-catbox
 
-#### api documentation for  [catbox (v7.1.3)](https://github.com/hapijs/catbox#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-catbox.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-catbox) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-catbox.svg)](https://travis-ci.org/npmdoc/node-npmdoc-catbox)
+#### basic api documentation for  [catbox (v7.1.3)](https://github.com/hapijs/catbox#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-catbox.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-catbox) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-catbox.svg)](https://travis-ci.org/npmdoc/node-npmdoc-catbox)
 
 #### Multi-strategy object caching service
 
@@ -69,7 +69,8 @@
         "test": "lab -a code -t 100 -L",
         "test-cov-html": "lab -a code -r html -o coverage.html"
     },
-    "version": "7.1.3"
+    "version": "7.1.3",
+    "bin": {}
 }
 ```
 
